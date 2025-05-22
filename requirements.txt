@@ -1,0 +1,8 @@
+numpy
+pandas
+scikit-learn
+matplotlib
+seaborn
+
+# -e . is used to install the package in editable mode
+-e .
