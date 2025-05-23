@@ -3,6 +3,8 @@ pandas
 scikit-learn
 matplotlib
 seaborn
+catboost
+xgboost
 
 # -e . is used to install the package in editable mode
 -e .
