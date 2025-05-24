@@ -5,6 +5,7 @@ matplotlib
 seaborn
 catboost
 xgboost
+dill
 
 # -e . is used to install the package in editable mode
 -e .
