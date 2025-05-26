@@ -58,7 +58,55 @@ class ModelTraining:
                 'Extra Trees Regressor': ExtraTreesRegressor()
             }
 
-            model_report:dict = evaluate_model(X_train = X_train, y_train = y_train, X_test = X_test, y_test = y_test, models = models)
+            params = {
+                "Linear Regression" : {},
+                "KNeighbors Regressor": {
+                    'n_neighbors': [3, 5, 7, 9, 11],
+                    'weights': ['uniform', 'distance'],
+                    'algorithm': ['auto', 'ball_tree', 'kd_tree', 'brute']
+                },
+                "Decision Tree Regressor": {
+                    'criterion': ['squared_error', 'friedman_mse', 'absolute_error', 'poisson'],
+                    'max_depth': [None, 5, 10, 15, 20],
+                    'min_samples_split': [2, 5, 10],
+                    'min_samples_leaf': [1, 2, 4]
+                },
+                "CatBoost Regressor": {
+                    'depth': [6, 8, 10],
+                    'learning_rate': [0.01, 0.05, 0.1],
+                    'iterations': [30, 50, 100]
+                },
+                "XGBoost Regressor": {
+                    'learning_rate': [0.1, 0.01, 0.05, 0.001],
+                    'n_estimators': [8, 16, 32, 64, 128, 256],
+                    'max_depth': [3, 5, 7, 9]
+                },
+                "AdaBoost Regressor": {
+                    'learning_rate': [0.1, 0.01, 0.5, 0.001],
+                    'n_estimators': [8, 16, 32, 64, 128, 256]
+                },
+                "Gradient Boosting Regressor": {
+                    'loss': ['squared_error', 'huber', 'absolute_error', 'quantile'],
+                    'learning_rate': [0.1, 0.01, 0.05, 0.001],
+                    'subsample': [0.6, 0.7, 0.75, 0.8, 0.85, 0.9],
+                    'n_estimators': [8, 16, 32, 64, 128, 256]
+                },
+                "Random Forest Regressor": {
+                    'n_estimators': [8, 16, 32, 64, 128, 256],
+                    'max_depth': [None, 5, 10, 15, 20],
+                    'min_samples_split': [2, 5, 10],
+                    'min_samples_leaf': [1, 2, 4]
+                },
+                "Extra Trees Regressor": {
+                    'n_estimators': [8, 16, 32, 64, 128, 256],
+                    'max_depth': [None, 5, 10, 15, 20],
+                    'min_samples_split': [2, 5, 10],
+                    'min_samples_leaf': [1, 2, 4]
+                }
+            }
+
+            model_report:dict = evaluate_model(X_train = X_train, y_train = y_train, X_test = X_test, y_test = y_test,
+                                               models = models, params = params)
             logging.info("Model evaluation completed.")
 
             ## Get the best model based on R2 score            
